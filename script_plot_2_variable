@@ -1,0 +1,68 @@
+# autor Baumard, UNSW, 15/052018
+import scipy.io as sio
+import matplotlib.pyplot as plt
+import numpy as np
+
+data = sio.loadmat('/media/z3525831/Transcend/UNSW/DATA ADCP/CH100_nostructure.mat')
+
+data_U = data['U']
+data_V = data['V']
+data_depthV = data['depthV']
+data_t = data['t']
+data_timeDV = data['timeDV']                      # We must define variables for each list key in the "data"                     
+data_u25 = data['u25']                            # dictionary in order to be able to exploit them.
+data_u55 = data['u55']
+data_u90 = data['u90']
+data_v25 = data['v25']
+data_v55 = data['v55']
+data_v90 = data['v90']
+
+
+import datetime as dt
+def matlab2datetime(matlab_datenum):
+    day = dt.datetime.fromordinal(int(matlab_datenum))                       # Conversion of Matlab time data to  
+    dayfrac = dt.timedelta(days=matlab_datenum%1) - dt.timedelta(days = 366) #'classic python time data.
+    return day + dayfrac
+
+# convert Matlab variable "t" into list of python datetime objects.
+py_t = [matlab2datetime(tval) for tval in t]
+
+U13 = data_U[19,:]
+V13 = data_V[19,:]       # Creation of variable 'U' and 'V' for three depth values (13,49,89).
+U49 = data_U[10,:]       # [19,:]= 13m ; [10,:]= 49m  ;  [0,:] = 89m 
+V49 = data_V[10,:]
+U89 = data_U[0,:]
+V89 = data_V[0,:]
+                               # Graph 1 with the variables 'U' and 'V' for the depth 13m; according to time.
+t = data_t[0,:]               
+plt.plot(py_t,U13,"r--", label="U13") # variables: time, U13  ;  option for: color, legend_name
+plt.plot(py_t,V13, label="V13")       # variables: time, V13  ;  option for: legend_name
+plt.xlabel("Time")                    # line for x_axi_label.                                  
+plt.ylabel("velocity at depth 13")    # line for y_axi_label.
+plt.title("CH100 velocity data")      # line for title_label.
+plt.grid(True)                        # line for creat grid.
+plt.legend()                          # line for creat legend.
+plt.show()
+
+                              # Graph 2 with the variables 'U' and 'V' for the depth 49m; according to time.
+t = data_t[0,:]               
+plt.plot(py_t,U49,"r--", label="U49")
+plt.plot(py_t,V49, label="V49")
+plt.xlabel("Time")             
+plt.ylabel("velocity at depth 49 ")
+plt.title("CH100 velocity data")
+plt.grid(True)                       
+plt.legend() 
+plt.show()
+
+
+                            # Graph 3 with the variables 'U' and 'V' for the depth 89m; according to time
+t = data_t[0,:]               
+plt.plot(py_t,U89,"r--", label="U89")
+plt.plot(py_t,V89, label="V89")
+plt.xlabel("Time")             
+plt.ylabel("velocity at depth 89")
+plt.title("CH100 velocity data")
+plt.grid(True)                       
+plt.legend() 
+plt.show()
