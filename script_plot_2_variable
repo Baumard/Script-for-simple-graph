@@ -23,7 +23,7 @@ def matlab2datetime(matlab_datenum):
     day = dt.datetime.fromordinal(int(matlab_datenum))                       # Conversion of Matlab time data to  
     dayfrac = dt.timedelta(days=matlab_datenum%1) - dt.timedelta(days = 366) #'classic python time data.
     return day + dayfrac
-
+t = data_t[0,:]
 # convert Matlab variable "t" into list of python datetime objects.
 py_t = [matlab2datetime(tval) for tval in t]
 
@@ -35,10 +35,10 @@ U89 = data_U[0,:]
 V89 = data_V[0,:]
                                # Graph 1 with the variables 'U' and 'V' for the depth 13m; according to time.
 t = data_t[0,:]               
-plt.plot(py_t,U13,"r--", label="U13") # variables: time, U13  ;  option for: color, legend_name
+plt.plot(py_t,U13,label="U13") # variables: time, U13  ;  option for: color, legend_name
 plt.plot(py_t,V13, label="V13")       # variables: time, V13  ;  option for: legend_name
 plt.xlabel("Time")                    # line for x_axi_label.                                  
-plt.ylabel("velocity at depth 13")    # line for y_axi_label.
+plt.ylabel("velocity at depth 13m")    # line for y_axi_label.
 plt.title("CH100 velocity data")      # line for title_label.
 plt.grid(True)                        # line for creat grid.
 plt.legend()                          # line for creat legend.
@@ -46,10 +46,10 @@ plt.show()
 
                               # Graph 2 with the variables 'U' and 'V' for the depth 49m; according to time.
 t = data_t[0,:]               
-plt.plot(py_t,U49,"r--", label="U49")
+plt.plot(py_t,U49, label="U49")
 plt.plot(py_t,V49, label="V49")
 plt.xlabel("Time")             
-plt.ylabel("velocity at depth 49 ")
+plt.ylabel("velocity at depth 49m ")
 plt.title("CH100 velocity data")
 plt.grid(True)                       
 plt.legend() 
@@ -58,10 +58,10 @@ plt.show()
 
                             # Graph 3 with the variables 'U' and 'V' for the depth 89m; according to time
 t = data_t[0,:]               
-plt.plot(py_t,U89,"r--", label="U89")
+plt.plot(py_t,U89, label="U89")
 plt.plot(py_t,V89, label="V89")
 plt.xlabel("Time")             
-plt.ylabel("velocity at depth 89")
+plt.ylabel("velocity at depth 89m")
 plt.title("CH100 velocity data")
 plt.grid(True)                       
 plt.legend() 
