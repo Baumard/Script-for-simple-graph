@@ -48,7 +48,7 @@ plt.show()
 
 
 
-t = data_t[0,:]                #Creation of the second graph.
+t = data_t[0,:]                #Creation of the third graph.
 plt.plot(py_t,x)
 plt.xlabel("Time")
 plt.ylabel("U25_velocity (m.s-1)")
