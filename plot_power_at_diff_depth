@@ -41,22 +41,28 @@ V13 = (U13*U13) + (V13*V13)
 V13f = np.sqrt(V13)                        
 P13 = 0.5 * 1025 * 4 * (V13f*V13f*V13f)     # So P = 1/2 * 1025 * 4 * Vf^3.
 Pf13 = P13/1000                             # Converting unit W to kW for power.
+Pf13m = np.nanmean(Pf13)
+Pf13m = np.full((12808, ),  0.7253716544610653)
 
 
 V49 = (U49*U49) + (V49*V49)
 V49f = np.sqrt(V49)                        
 P49 = 0.5 * 1025 * 4 * (V49f*V49f*V49f)     
 Pf49 = P49/1000    
+Pf49m = np.nanmean(Pf49)
+Pf49m = np.full((12808, ),  0.2660728743977401)
 
 V89 = (U89*U89) + (V89*V89)
 V89f = np.sqrt(V89)                        
 P89 = 0.5 * 1025 * 4 * (V89f*V89f*V89f)     
 Pf89 = P89/1000    
-
+Pf89m = np.nanmean(Pf89)
+Pf89m = np.full((12808, ),  0.031341130788260084)
 # Creation of different graphs.
 
 t = data_t[0,:]                        # Define the variable t (time) with the right size. 
 plt.plot(py_t,Pf13,label="Power(kW)")  #define the variable uses
+plt.plot(py_t,Pf13m,label="mean")
 axes = plt.gca()                       #define the min and max of the y axis
 axes.set_ylim(0, 10)                   #define the min and max of the y axis
 plt.xlabel("Time")                                                     
@@ -69,6 +75,7 @@ plt.show()
                               
 t = data_t[0,:]               
 plt.plot(py_t,Pf49, label="Power(kW)")
+plt.plot(py_t,Pf49m,label="mean")
 axes = plt.gca() 
 axes.set_ylim(0, 10)
 plt.xlabel("Time")             
@@ -80,6 +87,7 @@ plt.show()
 
 t = data_t[0,:]               
 plt.plot(py_t,Pf89, label="Power(kW)")
+plt.plot(py_t,Pf89m,label="mean")
 axes = plt.gca() 
 axes.set_ylim(0, 10)
 plt.xlabel("Time")             
